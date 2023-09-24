@@ -1,5 +1,24 @@
 class Grafo:
     def __init__(self, arquivo: str = None, vertices: dict[int, str] = [], arestas: list[list[int, int, float]] = []):
+        if arquivo:
+            vertices = {}
+            arestas = []
+            with open(arquivo, 'r') as file:
+                lines = file.readlines()
+                for line in lines:
+                    if line.strip().startswith('*vertices'):
+                        continue  # Skip the line starting with '*vertices'
+                    if line.strip().startswith('*edges'):
+                        continue  # Skip the line starting with '*vertices'
+                    values = line.strip().split()
+
+                    if len(values) == 2:
+                        vertices[int(values[0])] = int(values[1])
+
+                    if len(values) == 3:
+                        aresta = [int(values[0]), int(values[1]), float(values[2])]
+                        arestas.append(aresta)
+
         self.vertices_arestas: dict[int, dict] = {}
         self.arestas = arestas
         self.vertices = vertices
@@ -29,15 +48,15 @@ class Grafo:
         return self.vertices_arestas[aresta[0]].get(aresta[1]) is not None
 
     def peso(self, aresta):
-        return self.vertices_arestas[aresta[0]][aresta[1]]
+        peso = self.vertices_arestas[aresta[0]]. get(aresta[1])
+        return peso if peso else float('inf')
 
 
-
-a = Grafo({1: 'A',  2: 'B',  3: 'C'}, [[1, 2, 10], [3, 2, 20]])
-print(a.qtdVertices())
-print(a.qtdArestas())
-print(a.grau(2))
-print(a.rotulo(1))
-print(a.vizinhos(1))
-print(a.haAresta([2,3]))
-print(a.peso([1,2]))
+# a = Grafo('polbooks.net')
+# print(a.qtdVertices())
+# print(a.qtdArestas())
+# print(a.grau(2))
+# print(a.rotulo(1))
+# print(a.vizinhos(1))
+# print(a.haAresta([2,3]))
+# print(a.peso([20,2]))
