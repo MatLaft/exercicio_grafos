@@ -12,7 +12,6 @@ class GrafoBuscaLargura(Grafo):
         while len(fila) > 0:
             i = fila[0][0]
             ancestral = fila[0][1]
-            # print(visitados)
             fila.pop(0)
             for j in ordem:
                 if ancestral in ordem[j]:
@@ -23,7 +22,6 @@ class GrafoBuscaLargura(Grafo):
                     break
             else:
                 ordem[len(ordem)] = [i]
-                # print(ordem)
 
             for vertice in self.vertices_arestas[i].keys():
                 if vertice not in conhecidos:
@@ -34,7 +32,7 @@ class GrafoBuscaLargura(Grafo):
             print(f'{visita}: {str(list(ordem[visita]))}')
 
 
-a = GrafoBuscaLargura('polbooks.net')
+# a = GrafoBuscaLargura('polbooks.net')
 # a = GrafoBuscaLargura(vertices={0:0,1:1,2:2,3:3,4:4}, arestas=[[0,1,1],[0,2,1],[0,3,1],[3,4,1]])
 # print(a.vertices_arestas)
-a.busca_em_largura(1)
+# a.busca_em_largura(1)

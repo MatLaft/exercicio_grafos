@@ -53,6 +53,7 @@ class Grafo:
 
 
 # a = Grafo('polbooks.net')
+# print(a.vertices_arestas)
 # print(a.qtdVertices())
 # print(a.qtdArestas())
 # print(a.grau(2))
