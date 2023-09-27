@@ -1,5 +1,6 @@
 class Grafo:
-    def __init__(self, arquivo: str = None, vertices: dict[int, str] = [], arestas: list[list[int, int, float]] = []):
+    def __init__(self, arquivo: str = None, dirigido: bool = False, vertices: dict[int, str] = [],
+                 arestas: list[list[int, int, float]] = []):
         if arquivo:
             vertices = {}
             arestas = []
@@ -18,7 +19,7 @@ class Grafo:
                     if len(values) == 3:
                         aresta = [int(values[0]), int(values[1]), float(values[2])]
                         arestas.append(aresta)
-
+        self.dirigido = dirigido
         self.vertices_arestas: dict[int, dict] = {}
         self.arestas = arestas
         self.vertices = vertices
@@ -27,7 +28,8 @@ class Grafo:
             self.vertices_arestas[vertice] = {}
         for aresta in arestas:
             self.vertices_arestas[aresta[0]][aresta[1]] = aresta[2]
-            self.vertices_arestas[aresta[1]][aresta[0]] = aresta[2]
+            if not self.dirigido:
+                self.vertices_arestas[aresta[1]][aresta[0]] = aresta[2]
 
     def qtdVertices(self):
         return len(self.vertices)

@@ -1,8 +1,9 @@
 from exercise_1 import Grafo
 
 class CicloEuleriano(Grafo):
-    def __init__(self, arquivo: str = None, vertices: dict[int, str] = [], arestas: list[list[int, int, float]] = []):
-        super().__init__(arquivo, vertices, arestas)
+    def __init__(self, arquivo: str = None, dirigido: bool = False, vertices: dict[int, str] = [],
+                 arestas: list[list[int, int, float]] = []):
+        super().__init__(arquivo, dirigido, vertices, arestas)
 
     def is_euleriano(self):
         for vertice in self.vertices_arestas.keys():

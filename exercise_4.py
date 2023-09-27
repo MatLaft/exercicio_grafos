@@ -1,15 +1,16 @@
 from exercise_1 import Grafo
 
 class BellmanFord(Grafo):
-    def __init__(self, arquivo: str = None, vertices: dict[int, str] = [], arestas: list[list[int, int, float]] = []):
-        super().__init__(arquivo, vertices, arestas)
+    def __init__(self, arquivo: str = None, dirigido: bool = False, vertices: dict[int, str] = [],
+                 arestas: list[list[int, int, float]] = []):
+        super().__init__(arquivo, dirigido, vertices, arestas)
 
     def bellman_ford_search(self, origem):
         #Como meu grafo nao é orientado, caso houver alguma aresta com peso negativo, já existe um ciclo negativo logo:
-        for aresta in self.arestas:
-            if aresta[2] < 0:
-                print('há ciclo negativos pois o grafo é não dirigido com aresta negativa')
-                return False
+        # for aresta in self.arestas:
+        #     if aresta[2] < 0:
+        #         print('há ciclo negativos pois o grafo é não dirigido com aresta negativa')
+        #         return False
 
         vertice_distancia: dict[int, list] = {}
 
@@ -33,6 +34,7 @@ class BellmanFord(Grafo):
             print(f'{vertice}: {string}; d={vertice_distancia[vertice][0]}')
 
 
-# a = BellmanFord(vertices={0:0,1:1,2:2,3:3,4:4,5:5}, arestas=[[0,1,5],[0,3,1],[1,5,1],[1,4,1],[1,2,3],[2,3,1],[2,4,1],[5,2,1]])
+# a = BellmanFord(dirigido=True, vertices={0:0,1:1,2:2,3:3,4:4,5:5}, arestas=[[0,1,5],[0,3,1],[1,5,1],[1,4,1],[1,2,3],[2,3,1],[2,4,1],[5,2,1]])
+# a = BellmanFord('fln_pequena.net')
 # print(a.vertices_arestas)
 # a.bellman_ford_search(0)
