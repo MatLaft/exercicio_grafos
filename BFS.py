@@ -1,4 +1,4 @@
-from exercise_1 import Grafo
+from Graph import Grafo
 
 
 class GrafoBuscaLargura(Grafo):
