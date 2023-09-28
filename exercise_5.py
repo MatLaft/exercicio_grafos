@@ -23,9 +23,3 @@ class FloydWarshall(Grafo):
         for index, distancias in enumerate(matriz):
             # index(rotulo): Distancias
             print(f"{list(self.vertices.keys())[index]}({self.vertices[list(self.vertices.keys())[index]]}): {str(distancias)[1:-1].replace(' ','')}")
-
-
-
-# a = FloydWarshall(dirigido=True, vertices={0:0,1:1,2:2,3:3,4:4,5:5}, arestas=[[0,1,5],[0,3,1],[1,5,1],[1,4,1],[1,2,3],[2,3,1],[2,4,1],[5,2,1]])
-# a = FloydWarshall(dirigido=True, arquivo='polbooks.net')
-# a.floyd_warshall()

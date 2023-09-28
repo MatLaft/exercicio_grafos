@@ -37,8 +37,3 @@ class CicloEuleriano(Grafo):
 
         else:
             print(0)
-
-# a = CicloEuleriano('polbooks.net')
-# a = CicloEuleriano(vertices={0:0,1:1,2:2,3:3,4:4,5:5}, arestas=[[0,1,1],[0,3,1],[1,5,1],[1,4,1],[1,2,1],[2,3,1],[2,4,1],[5,2,1]])
-# print(a.vertices_arestas)
-# a.get_ciclo_euleriano()

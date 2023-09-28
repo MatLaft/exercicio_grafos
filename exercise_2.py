@@ -7,6 +7,10 @@ class GrafoBuscaLargura(Grafo):
         super().__init__(arquivo, dirigido, vertices, arestas)
 
     def busca_em_largura(self, vert):
+        if not self.vertices.get(vert):
+            print("Vertice não incluso no grafo")
+            return
+
         conhecidos = [vert]
         ordem = {}
         fila = [[vert, vert]]
@@ -30,10 +34,4 @@ class GrafoBuscaLargura(Grafo):
                     fila.append([vertice, i])
 
         for visita in ordem:
-            print(f'{visita}: {str(list(ordem[visita]))}')
-
-
-# a = GrafoBuscaLargura('polbooks.net')
-# a = GrafoBuscaLargura(vertices={0:0,1:1,2:2,3:3,4:4}, arestas=[[0,1,1],[0,2,1],[0,3,1],[3,4,1]])
-# print(a.vertices_arestas)
-# a.busca_em_largura(1)
+            print(f'{visita}: {str(list(ordem[visita]))[1:-1].replace(" ","")}')

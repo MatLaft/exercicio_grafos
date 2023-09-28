@@ -1,3 +1,5 @@
+import re
+
 class Grafo:
     def __init__(self, arquivo: str = None, dirigido: bool = False, vertices: dict[int, str] = [],
                  arestas: list[list[int, int, float]] = []):
@@ -7,18 +9,24 @@ class Grafo:
             with open(arquivo, 'r') as file:
                 lines = file.readlines()
                 for line in lines:
-                    if line.strip().startswith('*vertices'):
-                        continue  # Skip the line starting with '*vertices'
-                    if line.strip().startswith('*edges'):
-                        continue  # Skip the line starting with '*vertices'
-                    values = line.strip().split()
+                    line = line.strip()
 
-                    if len(values) == 2:
-                        vertices[int(values[0])] = int(values[1])
+                    if line.startswith("*"):
+                        current_section = line
+                        continue
 
-                    if len(values) == 3:
-                        aresta = [int(values[0]), int(values[1]), float(values[2])]
-                        arestas.append(aresta)
+                    if "*vertices" in current_section:
+                        parts = line.split(None, 1)
+                        if len(parts) == 2:
+                            vertice_index, vertice_name = parts
+                            vertices[int(vertice_index)] = vertice_name.strip('""')
+
+                    elif current_section == "*edges":
+                        edge_info = line.split()
+                        if len(edge_info) == 3:
+                            aresta = [int(edge_info[0]), int(edge_info[1]), float(edge_info[2])]
+                            arestas.append(aresta)
+
         self.dirigido = dirigido
         self.vertices_arestas: dict[int, dict] = {}
         self.arestas = arestas
@@ -52,14 +60,3 @@ class Grafo:
     def peso(self, aresta):
         peso = self.vertices_arestas[aresta[0]]. get(aresta[1])
         return peso if peso else float('inf')
-
-
-# a = Grafo('polbooks.net')
-# print(a.vertices_arestas)
-# print(a.qtdVertices())
-# print(a.qtdArestas())
-# print(a.grau(2))
-# print(a.rotulo(1))
-# print(a.vizinhos(1))
-# print(a.haAresta([2,3]))
-# print(a.peso([20,2]))
