@@ -47,10 +47,11 @@ class Kruskal(Grafo):
                 arestas_arvore.append([self.vertices[aresta[0]], self.vertices[aresta[1]]])
                 conjuntos_vertices.append({aresta[0], aresta[1]})
                 pesos_arvore += aresta[2]
-        print(conjuntos_vertices)
-        print(pesos_arvore)
-        print(arestas_arvore)
 
+        print(pesos_arvore)
+        for aresta in arestas_arvore[:-1]:
+            print(f"{aresta[0]}-{aresta[1]}, ", end='')
+        print(f"{arestas_arvore[-1][0]}-{arestas_arvore[-1][1]}")
 
 
 
