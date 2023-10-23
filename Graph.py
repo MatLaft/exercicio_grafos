@@ -6,7 +6,7 @@ class Grafo:
         if arquivo:
             vertices = {}
             arestas = []
-            with open(arquivo, 'r') as file:
+            with open(arquivo, 'r', encoding='utf-8') as file:
                 lines = file.readlines()
                 for line in lines:
                     line = line.strip()
