@@ -27,8 +27,8 @@ class OrdenacaoTopologica(ComponenteFortementeConectada):
 # a = OrdenacaoTopologica(arquivo='fln_pequena.net')
 # a = OrdenacaoTopologica(vertices={1:'1', 2: '2', 3:'3', 4:'4', 5:'5', 6:'6'},
 #                                   arestas=[[1,2,1],[2,4,1], [2,5,1], [5,4,1], [4,5,1], [4,1,1], [6,3,1]])
-a = OrdenacaoTopologica(vertices={0:'0', 1: '1', 2:'2', 3:'3', 4:'4', 5:'5',6:'6',7:'7'},
-                                  arestas=[[0,3,1],[0,4,1],[3,4,1],[3,5,1],[5,7,1],[4,5,1],[5,7,1],[2,0,1],
-                                           [2,1,1],[2,5,1],[2,6,1],[1,4,1]])
-
-a.ordenacao_topolica()
+# a = OrdenacaoTopologica(vertices={0:'0', 1: '1', 2:'2', 3:'3', 4:'4', 5:'5',6:'6',7:'7'},
+#                                   arestas=[[0,3,1],[0,4,1],[3,4,1],[3,5,1],[5,7,1],[4,5,1],[5,7,1],[2,0,1],
+#                                            [2,1,1],[2,5,1],[2,6,1],[1,4,1]])
+#
+# a.ordenacao_topolica()
