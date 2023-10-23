@@ -63,7 +63,7 @@ while True:
             while True:
                 quantidade_arestas = input("Digite o quantidade de arestas: ")
                 try:
-                    print("Digite o par de vertice e seu peso no formato: index_vertice1 index_vertice2")
+                    print("Digite o par de vertice no formato: index_vertice1 index_vertice2")
                     for _ in range(int(quantidade_arestas)):
                         while True:
                             vertice1,vertice2 = input("Aresta: ").split(' ')
@@ -129,7 +129,7 @@ while True:
             while True:
                 quantidade_arestas = input("Digite o quantidade de arestas: ")
                 try:
-                    print("Digite o par de vertice e seu peso no formato: index_vertice1 index_vertice2")
+                    print("Digite o par de vertice no formato: index_vertice1 index_vertice2")
                     for _ in range(int(quantidade_arestas)):
                         while True:
                             vertice1,vertice2 = input("Aresta: ").split(' ')
@@ -195,10 +195,10 @@ while True:
             while True:
                 quantidade_arestas = input("Digite o quantidade de arestas: ")
                 try:
-                    print("Digite o par de vertice e seu peso no formato: index_vertice1 index_vertice2")
+                    print("Digite o par de vertice e seu peso no formato: index_vertice1 index_vertice2 peso")
                     for _ in range(int(quantidade_arestas)):
                         while True:
-                            vertice1,vertice2 = input("Aresta: ").split(' ')
+                            vertice1,vertice2, peso = input("Aresta: ").split(' ')
                             try:
                                 if int(vertice2) not in vertices.keys() or int(vertice1) not in vertices.keys():
                                     print("Aresta com vertice inexistente")
@@ -207,9 +207,9 @@ while True:
                                 for aresta in arestas:
                                     if int(vertice1) == aresta[0] and int(vertice2) == aresta[1]:
                                         print("Aresta ja inserida")
-                                        print(f'Arestas:{[[i[0],i[1]] for i in arestas]}')
+                                        print(f'Arestas:{[[i[0],i[1], i[2]] for i in arestas]}')
                                         raise Exception
-                                arestas.append([int(vertice1), int(vertice2), 1])
+                                arestas.append([int(vertice1), int(vertice2), float(peso)])
                                 break
                             except:
                                 print("Valor invalido")
