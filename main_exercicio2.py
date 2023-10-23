@@ -1,7 +1,8 @@
 from componente_fortemente_conectada import ComponenteFortementeConectada
 from ordenacao_topologica import OrdenacaoTopologica
 from kruskal import Kruskal
-import pickle
+
+
 while True:
     print("Selecione um exercicio para testar")
     print("1- Componentes Fortemente Conexas")
