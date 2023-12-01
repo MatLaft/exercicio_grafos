@@ -1,0 +1,18 @@
+1. [Edmonds-Karp] (2,5pts) Crie um programa que receba um grafo dirigido e ponderado como argumento. Ao final,
+imprima na tela o valor do fluxo máximo resultante da execução do algoritmo de Edmonds-Karp.
+
+
+2. [Hopcroft-Karp] (2,5pts) Crie um programa que receba um arquivo de grafo bipartido, n˜ao-dirigido, n˜ao-ponderado
+e informe qual o valor do emparelhamento máximo e quais arestas pertencem a ele. Utilize o algoritmo de HopcroftKarp.
+
+
+3. [Colora¸c˜ao de Vértices] (2,5pts) Crie um programa que recebe um grafo n˜ao-dirigido e n˜ao-ponderado como
+argumento. Ao final, informe a colora¸c˜ao mínima e qual número cromático foi utilizado em cada vértice:
+
+
+4. [Relat´orio] (2,5pts) Elabore um relatório de uma página comentando para cada um dos exercícios quais as
+estruturas de dados selecionadas, justificando as escolhas. N˜ao esque¸ca de informar os nomes dos integrantes da
+equipe.
+
+
+Para o caso de grafos dirigidos, a palavra “*arcs” aparece no lugar de “*edges”

@@ -21,7 +21,7 @@ class Grafo:
                             vertice_index, vertice_name = parts
                             vertices[int(vertice_index)] = vertice_name.strip('""')
 
-                    elif current_section == "*edges":
+                    elif (current_section == "*edges" and dirigido == False) or current_section in ["*edges", "*arcs"] and dirigido == True:
                         edge_info = line.split()
                         if len(edge_info) == 3:
                             aresta = [int(edge_info[0]), int(edge_info[1]), float(edge_info[2])]
@@ -58,5 +58,8 @@ class Grafo:
         return self.vertices_arestas[aresta[0]].get(aresta[1]) is not None
 
     def peso(self, aresta):
-        peso = self.vertices_arestas[aresta[0]]. get(aresta[1])
-        return peso if peso else float('inf')
+        peso = self.vertices_arestas[aresta[0]].get(aresta[1])
+        return peso if peso or peso == 0 else float('inf')
+
+    def get_index(self, vertice):
+        return list(self.vertices.keys()).index(vertice)

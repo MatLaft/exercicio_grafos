@@ -1,4 +1,4 @@
-from Graph import Grafo
+from A3.Graph import Grafo
 
 
 class ComponenteFortementeConectada(Grafo):
