@@ -1,8 +1,12 @@
 import re
 
 class Grafo:
-    def __init__(self, arquivo: str = None, dirigido: bool = False, vertices: dict[int, str] = [],
-                 arestas: list[list[int, int, float]] = []):
+    def __init__(self, vertices: dict[int, str], arestas: list[list[int, int, float]],
+                 arquivo: str = None, dirigido: bool = False):
+        if vertices is None:
+            vertices = {}
+        if arestas is None:
+            arestas = []
         if arquivo:
             vertices = {}
             arestas = []
@@ -20,11 +24,17 @@ class Grafo:
                         if len(parts) == 2:
                             vertice_index, vertice_name = parts
                             vertices[int(vertice_index)] = vertice_name.strip('""')
+                        if len(parts) == 1:
+                            vertice_index = parts[0]
+                            vertices[int(vertice_index)] = vertice_index
 
                     elif (current_section == "*edges" and dirigido == False) or current_section in ["*edges", "*arcs"] and dirigido == True:
                         edge_info = line.split()
                         if len(edge_info) == 3:
                             aresta = [int(edge_info[0]), int(edge_info[1]), float(edge_info[2])]
+                            arestas.append(aresta)
+                        if len(edge_info) == 2:
+                            aresta = [int(edge_info[0]), int(edge_info[1]), 1]
                             arestas.append(aresta)
 
         self.dirigido = dirigido

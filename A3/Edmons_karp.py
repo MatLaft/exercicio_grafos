@@ -1,10 +1,10 @@
 from Graph import Grafo
 
 class RedeResidual(Grafo):
-    def __init__(self, arquivo: str = None, vertices: dict[int, str] = [],
-                 arestas: list[list[int, int, float]] = []):
+    def __init__(self, vertices: dict[int, str] = None, arestas: list[list[int, int, float]] = None,
+                 arquivo: str = None):
         dirigido = True
-        super().__init__(arquivo, dirigido, vertices, arestas)
+        super().__init__(vertices, arestas, arquivo=arquivo, dirigido=dirigido)
 
         self.__aresta_residuais = [[aresta[1], aresta[0], aresta[2]] for aresta in self.arestas]
 
@@ -16,11 +16,11 @@ class RedeResidual(Grafo):
         # print(self.vertices_arestas)
 
 class EdmonsKarp(Grafo):
-    def __init__(self, arquivo: str = None, vertices: dict[int, str] = [],
-                 arestas: list[list[int, int, float]] = []):
+    def __init__(self, vertices: dict[int, str] = None, arestas: list[list[int, int, float]] = None,
+                 arquivo: str = None):
         dirigido = True
-        super().__init__(arquivo, dirigido, vertices, arestas)
-        self.grafo_residural = RedeResidual(arquivo, vertices, arestas)
+        super().__init__(vertices, arestas, arquivo, dirigido)
+        self.grafo_residural = RedeResidual(vertices=vertices, arestas=arestas, arquivo=arquivo)
 
     def __busca_em_largura_edmons_karp(self, fonte, destino):
         C = [False for vertice in self.vertices]
