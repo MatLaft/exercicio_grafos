@@ -61,8 +61,3 @@ class HopcroftKarp(Grafo):
             D[x] = float('inf')
             return False
         return True
-
-
-
-a = HopcroftKarp(arquivo="emparelhamento_max/gr128_10.net")
-print(a.get_emparelhamento())

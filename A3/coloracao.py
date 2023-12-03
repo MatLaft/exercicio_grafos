@@ -7,20 +7,7 @@ class Coloracao(Grafo):
         dirigido = False
         super().__init__(vertices, arestas, arquivo, dirigido)
 
-    def soma_binaria_restrita(self, casas_validas: list, soma_valor_decimal):
-        soma_binario = [int(i) for i in list((bin(soma_valor_decimal)[2:]))]
-        index_validos = [i for i, j in enumerate(casas_validas) if j]
-        soma = [0]*len(casas_validas)
-        for _ in range(soma_valor_decimal):
-            index_para_somar = -1
-            soma[index_validos[index_para_somar]] += 1
-            while 2 in soma:
-                soma[index_validos[index_para_somar]] = 0
-                index_para_somar -= 1
-                soma[index_validos[index_para_somar]] += 1
-        return soma
-
-    def conjuntos_independetes_maximais(self):
+    def coloracao_minima(self):
         S = [([0]*self.qtdVertices()) for _ in range(2**self.qtdVertices())]
         for index, binario in enumerate(range(2**self.qtdVertices())):
             for index_bit, bit in enumerate((bin(binario)[:1:-1])):
@@ -79,13 +66,3 @@ class Coloracao(Grafo):
                 print({"cor": index+1, "Conjunto independete": conjunto_independente})
 
         return conjuntos_minimos
-
-
-
-
-
-a = Coloracao(arquivo="fluxo_teste/cor3.net")
-a.conjuntos_independetes_maximais()
-# a.soma_binaria_restrita([1,0,0,1,1,0,1], 8)
-# for i in range(8):
-#     a.soma_binaria_restrita([0,1,0,0,1,1], i)

@@ -54,10 +54,6 @@ class EdmonsKarp(Grafo):
                                   for i in range(len(caminho_aumentante) - 1)]
             # Calculo de Fp
             Fp = min(self.grafo_residural.peso(aresta) for aresta in arestas_do_caminho)
-
-            print(Fp, [[self.rotulo(vertice[0]),self.rotulo(vertice[1])] for vertice in arestas_do_caminho],
-                  [self.grafo_residural.peso(aresta) for aresta in arestas_do_caminho])
-
             F += Fp
 
             # Atualizando a capacidade residual
@@ -68,15 +64,3 @@ class EdmonsKarp(Grafo):
             caminho_aumentante = self.__busca_em_largura_edmons_karp(fonte, destino)
         print(F)
         return F
-
-
-
-
-
-
-
-
-a = EdmonsKarp(arquivo="fluxo_teste/fluxo_prova.net")
-# print(a.arestas)
-# print(a.peso([1,2]))
-a.get_fluxo_maximo(1, 10)
