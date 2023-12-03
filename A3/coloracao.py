@@ -20,8 +20,6 @@ class Coloracao(Grafo):
                 soma[index_validos[index_para_somar]] += 1
         return soma
 
-
-
     def conjuntos_independetes_maximais(self):
         S = [([0]*self.qtdVertices()) for _ in range(2**self.qtdVertices())]
         for index, binario in enumerate(range(2**self.qtdVertices())):
@@ -43,17 +41,44 @@ class Coloracao(Grafo):
                         break
             if c:
                 R.append(X)
-                #Remover todos subconjuntos de X de S
-                possibilidades = 2**sum(X)
-                for possibilidade in range(1, possibilidades-1):
-                    a = self.soma_binaria_restrita(X, possibilidade)
-                    if a in S:
-                        S.remove(a)
-
             index += 1
+        conjuntos_independetes_possibilidades = [[0]*len(R) for _ in range(2**len(R))]
+        for index, binario in enumerate(range(2**len(R))):
+            for index_bit, bit in enumerate((bin(binario)[:1:-1])):
+                conjuntos_independetes_possibilidades[index][len(conjuntos_independetes_possibilidades[index])-index_bit-1] = int(bit)
 
-        print(R)
-        return R
+        conjuntos_possiveis = []
+
+        for possibilidade in conjuntos_independetes_possibilidades:
+            conjuntos = [par[0] for par in zip(R, possibilidade) if par[1]]
+            if sum([j for i in conjuntos for j in i]) == self.qtdVertices():
+                subconjunto_completo = [0]*self.qtdVertices()
+                for conjunto in conjuntos:
+                    for index,valor in enumerate(conjunto):
+                        subconjunto_completo[index] += valor
+                if subconjunto_completo.count(1) == self.qtdVertices():
+                    conjuntos_possiveis.append(conjuntos)
+
+        tamanhos_minimos = [len(c) for c in conjuntos_possiveis]
+
+        conjuntos_minimos = [conjunto for conjunto in conjuntos_possiveis if len(conjunto) == min(tamanhos_minimos)]
+        print("Quantidade minima de cores:", len(conjuntos_minimos))
+        conjuntos_minimos_vertices = []
+        for conjunto in conjuntos_minimos:
+            conjunto_vetices = []
+            aux = []
+            for j in range(len(conjunto)):
+                for i in range(self.qtdVertices()):
+                    if conjunto[j][i] == 1:
+                        aux.append(list(self.vertices.keys())[i])
+                conjunto_vetices.append(aux)
+                aux = []
+            conjuntos_minimos_vertices.append(conjunto_vetices)
+            print("Possibilidade:", conjunto_vetices)
+            for index, conjunto_independente in enumerate(conjunto_vetices):
+                print({"cor": index+1, "Conjunto independete": conjunto_independente})
+
+        return conjuntos_minimos
 
 
 
